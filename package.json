@@ -1,26 +1,20 @@
 {
   "name": "exch-book-api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "repository": "https://github.com/chfleury/exch-book-api",
+  "author": "Thiago Gomes <thiagosiqgomes@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon node src/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chfleury/exch-book-api.git"
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.2.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chfleury/exch-book-api/issues"
-  },
-  "homepage": "https://github.com/chfleury/exch-book-api#readme",
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.7.1",
-    "sequelize": "^6.6.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize": "^6.6.5"
   }
 }

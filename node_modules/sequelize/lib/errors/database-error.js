@@ -19,10 +19,16 @@ class DatabaseError extends BaseError {
     this.original = parent;
     /**
      * The SQL that triggered the error
+     *
      * @type {string}
      */
     this.sql = parent.sql;
-    Error.captureStackTrace(this, this.constructor);
+    /**
+     * The parameters for the sql that triggered the error
+     *
+     * @type {Array<any>}
+     */
+    this.parameters = parent.parameters;
   }
 }
 

@@ -8,7 +8,7 @@ routes.get('/', (req, res) => {
     res.json({ message: 'hello world' })
 })
 
-routes.get('/users', UserController.store)
-routes.post('users', UserController.index)
+routes.get('/users', UserController.index)
+routes.post('/users', UserController.store)
 
 module.exports = routes

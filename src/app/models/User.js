@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize')
-const { password } = require('../../config/database')
 
 class User extends Sequelize.Model {
     static init(sequelize) {

@@ -26,11 +26,6 @@ class SessionController {
         })
 
     }
-
-    async index (req, res) {
-
-        return res.json()
-    }
 }
 
 module.exports = new SessionController()

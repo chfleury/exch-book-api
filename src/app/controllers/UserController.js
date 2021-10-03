@@ -1,10 +1,19 @@
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
 
 class UserController {
     async store (req, res) {
-        const user = await User.create(req.body)
+        const { email, phone, name, password } = req.body
 
-        return res.json(user)
+        bcrypt.hash(password, 10, async (errBcrypt, hash) => {
+            if (errBcrypt) {
+                return res.status(500).send({ error: errBcrypt })
+            }
+
+            const user = await User.create({ email, phone, name, password: hash })
+
+            return res.json(user)
+        })
     }
 
     async index (req, res) {

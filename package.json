@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/chfleury/exch-book-api",
-  "author": "Thiago Gomes <thiagosiqgomes@gmail.com>",
+  "author": "Texugo Gomes <thiagosiqgomes@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "nodemon node src/index.js",

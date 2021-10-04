@@ -6,9 +6,10 @@ class UserController {
         const { email, phone, name, password } = req.body
 
         bcrypt.hash(password, 10, async (errBcrypt, hash) => {
-            if (errBcrypt) {
-                return res.status(500).send({ error: errBcrypt })
-            }
+            // if (errBcrypt) {
+                // texugo
+            //     return res.status(500).send({ error: 'errBcrypt' })
+            // }
 
             const user = await User.create({ email, phone, name, password: hash })
 

@@ -12,6 +12,9 @@ routes.get('/', (req, res) => {
 
 routes.get('/users', UserController.index)
 routes.post('/users', UserController.store)
+routes.put('/users/:id', UserController.update)
+routes.get('/users/:id', UserController.indexOne)
+routes.delete('/users/:id', UserController.delete)
 
 routes.get('/books', BookController.index)
 routes.post('/books', BookController.store)

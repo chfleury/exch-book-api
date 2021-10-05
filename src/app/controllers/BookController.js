@@ -54,16 +54,24 @@ class BookController {
         if (invalidKeys.length !== 0)
             return res.status(400).json({ invalidKeys: invalidKeys })
 
-        const [affectedRows] = await Book.update(body, {
+        book.update(body)
+
+        return res.json(book)
+    }
+
+    async delete(req, res) {
+        const { id } = req.params
+
+        const book = await Book.findOne({
             where: { id: id }
         })
 
-        if (affectedRows === 0)
-            return res.status(500).json({
-                error: 'Something went wrong. Please try again later'
-            })
+        if (book === null)
+            return res.status(404).json({ id: id })
 
-        return res.json({ ...dataValues, ...body })
+        await book.destroy()
+
+        return res.json(book)
     }
 }
 

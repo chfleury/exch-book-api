@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 class SessionController {
     async store (req, res) {
@@ -19,7 +20,16 @@ class SessionController {
             }
 
             if (result) {
-                return res.json({ message: 'successfully authenticated' })
+                const token = jwt.sign({
+                    userId: user.id,
+                    email: user.email,
+                    name: user.name,
+                }, process.env.JWT_KEY, { expiresIn: "5d" })
+
+                return res.json({ 
+                    message: 'successfully authenticated',
+                    token: token
+                })
             }
 
             return res.status(401).json({ error: 'Authentication failed' })

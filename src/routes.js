@@ -14,8 +14,9 @@ routes.get('/users', UserController.index)
 routes.post('/users', UserController.store)
 
 routes.get('/books', BookController.index)
-routes.get('/books/:id', BookController.indexOne)
 routes.post('/books', BookController.store)
+routes.put('/books/:id', BookController.update)
+routes.get('/books/:id', BookController.indexOne)
 
 routes.post('/login', SessionController.store)
 

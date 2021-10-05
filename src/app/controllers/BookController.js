@@ -1,5 +1,4 @@
 const Book = require('../models/Book')
-const auth = require('../middlewares/auth')
 
 class BookController {
     async store (req, res) {

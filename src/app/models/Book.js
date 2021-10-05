@@ -4,16 +4,6 @@ class Book extends Sequelize.Model {
     static init(sequelize) {
         super.init(
             {
-                id: {
-                    type: Sequelize.INTEGER,
-                    allowNull: false,
-                    autoIncrement: true,
-                    primaryKey: true,
-                },
-                user_id: {
-                    type: Sequelize.STRING,
-                    allowNull: false,
-                },
                 title: Sequelize.STRING,
                 category: Sequelize.STRING,
                 description: Sequelize.STRING,

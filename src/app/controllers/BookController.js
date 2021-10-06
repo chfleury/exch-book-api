@@ -3,12 +3,23 @@ const Book = require('../models/Book')
 class BookController {
     async store(req, res) {
         const {
-            user_id, title, category, description,
-            conservation_state, is_active
+            user_id, 
+            title, 
+            category, 
+            description,
+            conservation_state, 
+            is_active,
+            image_id,
         } = req.body
+
         const book = await Book.create({
-            user_id, title, category, description,
-            conservation_state, is_active
+            user_id, 
+            title, 
+            category, 
+            description,
+            conservation_state, 
+            is_active,
+            image_id,
         })
 
         return res.json(book)

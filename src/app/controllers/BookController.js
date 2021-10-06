@@ -4,7 +4,6 @@ class BookController {
     async store(req, res) {
         const {
             user_id,
-            image_id,
             title, 
             category, 
             description,

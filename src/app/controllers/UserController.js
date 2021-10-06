@@ -2,12 +2,12 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt')
 
 class UserController {
-    async store (req, res) {
+    async store(req, res) {
         const { email, phone, name, password } = req.body
 
         bcrypt.hash(password, 10, async (errBcrypt, hash) => {
             // if (errBcrypt) {
-                // texugo
+            // texugo
             //     return res.status(500).send({ error: 'errBcrypt' })
             // }
 
@@ -17,8 +17,8 @@ class UserController {
         })
     }
 
-    async index (req, res) {
-        const users = await User.findAll()
+    async index(req, res) {
+        const users = await User.findAll({ where: req.query })
 
         return res.json(users)
     }

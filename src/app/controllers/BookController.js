@@ -30,9 +30,7 @@ class BookController {
     async index(req, res) {
         const books = await Book.findAndCountAll({
             where:{ is_active:true},
-            order: [['created_at', 'DESC']],
-            limit: 6,
-            offset: (page - 1) * 6,
+         
             attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
             include: [
               {
@@ -53,8 +51,7 @@ class BookController {
         const books = await Book.findAndCountAll({
             where: { user_id: { [Op.ne]: user_id }, is_active:true},
             order: [['created_at', 'DESC']],
-            limit: 6,
-            offset: (page - 1) * 6,
+          
             attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
             include: [
               {
@@ -74,8 +71,7 @@ class BookController {
         const books = await Book.findAll({
             where: { user_id ,is_active: true},
             order: [['created_at', 'DESC']],
-            limit: 6,
-            offset: (page - 1) * 6,
+         
             attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
             include: [
               {

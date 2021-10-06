@@ -12,6 +12,14 @@ class BookController {
 
         return res.json(books)
     }
+
+    async update (req, res) {
+        
+    }
+
+    async destroy (req, res) {
+        
+    }
 }
 
 module.exports = new BookController()

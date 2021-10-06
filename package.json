@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/chfleury/exch-book-api",
-  "author": "Thiago Gomes <thiagosiqgomes@gmail.com>",
+  "author": "Texugo Gomes <thiagosiqgomes@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon node src/index.js"
+    "start": "nodemon node src/index.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo:all",
+    "seed": "sequelize-cli db:seed:all"
   },
   "devDependencies": {
     "nodemon": "^2.0.13",
@@ -14,6 +17,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

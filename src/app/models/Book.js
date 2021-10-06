@@ -9,8 +9,6 @@ class Book extends Sequelize.Model {
                 description: Sequelize.STRING,
                 conservation_state: Sequelize.STRING,
                 is_active: Sequelize.BOOLEAN,
-                created_at: Sequelize.DATE,
-                updated_at: Sequelize.DATE,
             }, {
                 sequelize
             }

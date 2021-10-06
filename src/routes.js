@@ -21,9 +21,16 @@ routes.post('/login', SessionController.store)
 
 routes.get('/users', UserController.index)
 routes.post('/users', UserController.store)
+routes.put('/users/:id', UserController.update)
+routes.get('/users/:id', UserController.indexOne)
+routes.delete('/users/:id', UserController.delete)
 
-routes.get('/books', auth, BookController.index)
-routes.post('/books', auth, BookController.store)
+
+routes.get('/books', BookController.index)
+routes.post('/books', BookController.store)
+routes.put('/books/:id', BookController.update)
+routes.get('/books/:id', BookController.indexOne)
+routes.delete('/books/:id', BookController.delete)
 
 routes.post('/files', upload.single('file'), FileController.store)
 

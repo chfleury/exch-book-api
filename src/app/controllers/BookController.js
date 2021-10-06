@@ -3,7 +3,8 @@ const Book = require('../models/Book')
 class BookController {
     async store(req, res) {
         const {
-            user_id, 
+            user_id,
+            image_id,
             title, 
             category, 
             description,

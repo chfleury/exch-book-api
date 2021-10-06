@@ -25,6 +25,7 @@ routes.put('/users/:id', UserController.update)
 routes.get('/users/:id', UserController.indexOne)
 routes.delete('/users/:id', UserController.delete)
 
+// routes.use(auth);
 
 routes.get('/books', BookController.index)
 routes.post('/books', BookController.store)

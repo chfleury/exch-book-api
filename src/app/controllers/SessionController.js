@@ -28,7 +28,8 @@ class SessionController {
 
                 return res.json({ 
                     message: 'successfully authenticated',
-                    token: token
+                    token: token,
+                    id: user.id
                 })
             }
 

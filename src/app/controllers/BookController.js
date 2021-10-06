@@ -15,7 +15,7 @@ class BookController {
     }
 
     async index(req, res) {
-        const books = await Book.findAll({where: req.query})
+        const books = await Book.findAll({ where: req.query })
 
         return res.json(books)
     }

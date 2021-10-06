@@ -1,5 +1,6 @@
 const Book = require('../models/Book')
 const Op = require('sequelize').Op;
+const File = require('../models/File')
 
 class BookController {
     async store(req, res) {
@@ -27,7 +28,20 @@ class BookController {
     }
 
     async index(req, res) {
-        const books = await Book.findAll({where:{ is_active:true}})
+        const books = await Book.findAndCountAll({
+            where:{ is_active:true},
+            order: [['created_at', 'DESC']],
+            limit: 6,
+            offset: (page - 1) * 6,
+            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+            include: [
+              {
+                model: File,
+                as: 'image',
+                attributes: ['name', 'path', 'url'],
+              },
+            ],
+        })
 
 
         return res.json(books)
@@ -36,7 +50,20 @@ class BookController {
 
     async indexNotUser(req, res) {
         const {user_id} = req.params
-        const books = await Book.findAll({where: { user_id: { [Op.ne]: user_id }, is_active:true}})
+        const books = await Book.findAndCountAll({
+            where: { user_id: { [Op.ne]: user_id }, is_active:true},
+            order: [['created_at', 'DESC']],
+            limit: 6,
+            offset: (page - 1) * 6,
+            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+            include: [
+              {
+                model: File,
+                as: 'image',
+                attributes: ['name', 'path', 'url'],
+              },
+            ],
+        })
 
 
         return res.json(books)
@@ -44,7 +71,20 @@ class BookController {
 
     async indexUser(req, res) {
         const {user_id} = req.params
-        const books = await Book.findAll({where: { user_id ,is_active: true}})
+        const books = await Book.findAll({
+            where: { user_id ,is_active: true},
+            order: [['created_at', 'DESC']],
+            limit: 6,
+            offset: (page - 1) * 6,
+            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+            include: [
+              {
+                model: File,
+                as: 'image',
+                attributes: ['name', 'path', 'url'],
+              },
+            ],
+        })
 
 
         return res.json(books)
@@ -59,10 +99,12 @@ class BookController {
             where: { id: id }
         })
 
+        const image = await File.findByPr(recipe.image_id)
+
         if (book === null)
             return res.status(404).json({ id: id })
 
-        return res.json(book)
+        return res.json({ ...book, image })
     }
 
     async update(req, res) {

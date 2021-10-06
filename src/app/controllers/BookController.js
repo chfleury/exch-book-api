@@ -1,4 +1,5 @@
 const Book = require('../models/Book')
+const Op = require('sequelize').Op;
 
 class BookController {
     async store(req, res) {
@@ -26,10 +27,29 @@ class BookController {
     }
 
     async index(req, res) {
-        const books = await Book.findAll({ where: req.query })
+        const books = await Book.findAll({where:{ is_active:true}})
+
 
         return res.json(books)
     }
+
+
+    async indexNotUser(req, res) {
+        const {user_id} = req.params
+        const books = await Book.findAll({where: { user_id: { [Op.ne]: user_id }, is_active:true}})
+
+
+        return res.json(books)
+    }
+
+    async indexUser(req, res) {
+        const {user_id} = req.params
+        const books = await Book.findAll({where: { user_id ,is_active: true}})
+
+
+        return res.json(books)
+    }
+
 
 
     async indexOne(req, res) {

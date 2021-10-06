@@ -27,7 +27,11 @@ routes.delete('/users/:id', UserController.delete)
 
 // routes.use(auth);
 
+
 routes.get('/books', BookController.index)
+
+routes.get('/bookuser/:user_id', BookController.indexUser)
+routes.get('/booknotuser/:user_id', BookController.indexNotUser)
 routes.post('/books', BookController.store)
 routes.put('/books/:id', BookController.update)
 routes.get('/books/:id', BookController.indexOne)

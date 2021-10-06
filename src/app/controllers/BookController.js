@@ -20,6 +20,7 @@ class BookController {
         return res.json(books)
     }
 
+
     async indexOne(req, res) {
         const { id } = req.params
 

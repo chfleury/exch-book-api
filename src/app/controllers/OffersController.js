@@ -61,9 +61,7 @@ class OffersController {
         const { id } = req.params
         const body = req.body
 
-        const offer = await Offer.findOne({
-            where: { id: id }
-        })
+        const offer = await Offer.findByPk(id)
 
         if (offer === null)
             return res.status(404).json({ id: id })

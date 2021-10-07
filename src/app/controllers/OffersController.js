@@ -1,6 +1,7 @@
 const Book = require('../models/Book')
 const Offer = require('../models/Offer')
 const User = require('../models/User')
+const File = require('../models/File')
 
 class OffersController {
     async store(req, res) {
@@ -12,7 +13,7 @@ class OffersController {
             is_accepted
         } = req.body
 
-        const book = await Offer.create({
+        const offer = await Offer.create({
             user_from_id,
             user_to_id,
             book_from_id,
@@ -20,18 +21,25 @@ class OffersController {
             is_accepted
         })
 
-        return res.json(book)
+        return res.json(offer)
     }
 
     async index(req, res) {
         const offers = await Offer.findAll({
             where: req.query,
-            attributes: ['user_from_id', 'user_to_id', 'book_from_id', 'book_to_id', 'is_accepted'],
+            attributes: ['id', 'user_from_id', 'user_to_id', 'book_from_id', 'book_to_id', 'is_accepted'],
             include: [
                 {
                     model: Book,
                     as: 'book_from',
                     attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+                    include: [
+                        {
+                            model: File,
+                            as: 'image',
+                            attributes: ['name', 'path', 'url'],
+                          },
+                    ]
                 },
                 {
                     model: User,
@@ -58,22 +66,35 @@ class OffersController {
         const { id } = req.params
 
         const offer = await Offer.findOne({
-            where: { id: id }
+            where: req.query,
+            attributes: ['id', 'user_from_id', 'user_to_id', 'book_from_id', 'book_to_id', 'is_accepted'],
+            include: [
+                {
+                    model: Book,
+                    as: 'book_from',
+                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at']
+                },
+                {
+                    model: User,
+                    as: 'user_from',
+                    attributes: ['email', 'phone', 'name', 'password', 'location', 'created_at']
+                }
+            ]
         })
 
         if (offer === null)
             return res.status(404).json({ id: id })
 
-        return res.json(offer)
+        const image = await File.findByPk(offer.book_from.image_id)
+
+        return res.json({ offer, image })
     }
 
     async update(req, res) {
         const { id } = req.params
         const body = req.body
 
-        const offer = await Offer.findOne({
-            where: { id: id }
-        })
+        const offer = await Offer.findByPk(id)
 
         if (offer === null)
             return res.status(404).json({ id: id })

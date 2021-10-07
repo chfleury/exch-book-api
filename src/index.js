@@ -20,5 +20,5 @@ app.use(
 
 app.use(routes)
 
-app.listen(3333)
+app.listen(process.evnv.PORT || 3000)
 

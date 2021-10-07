@@ -31,11 +31,21 @@ class OffersController {
                 {
                     model: Book,
                     as: 'book_from',
-                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at']
+                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
                 },
                 {
                     model: User,
                     as: 'user_from',
+                    attributes: ['email', 'phone', 'name', 'password', 'location', 'created_at']
+                },
+                {
+                    model: Book,
+                    as: 'book_to',
+                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at']
+                },
+                {
+                    model: User,
+                    as: 'user_to',
                     attributes: ['email', 'phone', 'name', 'password', 'location', 'created_at']
                 }
             ]

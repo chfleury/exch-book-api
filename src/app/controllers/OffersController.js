@@ -32,7 +32,14 @@ class OffersController {
                 {
                     model: Book,
                     as: 'book_from',
-                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at']
+                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+                    include: [
+                        {
+                            model: File,
+                            as: 'image',
+                            attributes: ['name', 'path', 'url'],
+                          },
+                    ]
                 },
                 {
                     model: User,

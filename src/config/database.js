@@ -4,8 +4,10 @@ module.exports = {
   dialect: 'postgres',
   protocol: 'postgres',
   dialectOptions: {
-      ssl: true,
-      rejectUnauthorized: false 
+    ssl: {
+      require: true,
+      rejectUnauthorized: false // <<<<<< YOU NEED THIS
+    }
   },
   host: 'ec2-54-204-148-110.compute-1.amazonaws.com',
   username: 'ianvopnsmcdyms',

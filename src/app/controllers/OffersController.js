@@ -1,19 +1,21 @@
+const Book = require('../models/Book')
 const Offer = require('../models/Offer')
+const User = require('../models/User')
 
 class OffersController {
     async store(req, res) {
         const {
             user_from_id,
-            user_to_id, 
-            book_from_id, 
+            user_to_id,
+            book_from_id,
             book_to_id,
             is_accepted
         } = req.body
 
         const book = await Offer.create({
-            user_from_id, 
-            user_to_id, 
-            book_from_id, 
+            user_from_id,
+            user_to_id,
+            book_from_id,
             book_to_id,
             is_accepted
         })
@@ -22,7 +24,22 @@ class OffersController {
     }
 
     async index(req, res) {
-        const offers = await Offer.findAll({ where: req.query })
+        const offers = await Offer.findAll({
+            where: req.query,
+            attributes: ['user_from_id', 'user_to_id', 'book_from_id', 'book_to_id', 'is_accepted'],
+            include: [
+                {
+                    model: Book,
+                    as: 'book_from',
+                    attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at']
+                },
+                {
+                    model: User,
+                    as: 'user_from',
+                    attributes: ['email', 'phone', 'name', 'password', 'location', 'created_at']
+                }
+            ]
+        })
 
         return res.json(offers)
     }

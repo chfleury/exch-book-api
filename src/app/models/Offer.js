@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-class Book extends Sequelize.Model {
+class Offer extends Sequelize.Model {
     static init(sequelize) {
         super.init(
             {
@@ -23,4 +23,4 @@ class Book extends Sequelize.Model {
 
 }
 
-module.exports = Book
+module.exports = Offer

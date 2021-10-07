@@ -10,6 +10,7 @@ const UserController = require('./app/controllers/UserController')
 const BookController = require('./app/controllers/BookController')
 const SessionController = require('./app/controllers/SessionController')
 const FileController = require('./app/controllers/FileController')
+const OffersController = require('./app/controllers/OffersController')
 
 const auth = require('./app/middlewares/auth')
 
@@ -27,7 +28,6 @@ routes.delete('/users/:id', UserController.delete)
 
 // routes.use(auth);
 
-
 routes.get('/books', BookController.index)
 
 routes.get('/bookuser/:user_id', BookController.indexUser)
@@ -38,5 +38,11 @@ routes.get('/books/:id', BookController.indexOne)
 routes.delete('/books/:id', BookController.delete)
 
 routes.post('/files', upload.single('file'), FileController.store)
+
+routes.get('/offers', OffersController.index)
+routes.post('/offers', OffersController.store)
+routes.put('/offers/:id', OffersController.update)
+routes.get('/offers/:id', OffersController.indexOne)
+routes.delete('/offers/:id', OffersController.delete)
 
 module.exports = routes

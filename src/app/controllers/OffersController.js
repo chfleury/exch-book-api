@@ -12,7 +12,7 @@ class OffersController {
             is_accepted
         } = req.body
 
-        const book = await Offer.create({
+        const offer = await Offer.create({
             user_from_id,
             user_to_id,
             book_from_id,
@@ -20,7 +20,7 @@ class OffersController {
             is_accepted
         })
 
-        return res.json(book)
+        return res.json(offer)
     }
 
     async index(req, res) {

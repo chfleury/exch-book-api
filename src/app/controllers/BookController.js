@@ -32,7 +32,7 @@ class BookController {
         const books = await Book.findAndCountAll({
             where:{ is_active:true},
          
-            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'user_id', 'created_at'],
             include: [
               {
                 model: File,
@@ -58,7 +58,7 @@ class BookController {
             where: { user_id: { [Op.ne]: user_id }, is_active:true},
             order: [['created_at', 'DESC']],
           
-            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'user_id', 'created_at'],
             include: [
               {
                 model: File,
@@ -83,7 +83,7 @@ class BookController {
             where: { user_id ,is_active: true},
             order: [['created_at', 'DESC']],
          
-            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'created_at'],
+            attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'user_id', 'created_at'],
             include: [
               {
                 model: File,

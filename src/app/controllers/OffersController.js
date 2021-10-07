@@ -26,7 +26,7 @@ class OffersController {
     async index(req, res) {
         const offers = await Offer.findAll({
             where: req.query,
-            attributes: ['user_from_id', 'user_to_id', 'book_from_id', 'book_to_id', 'is_accepted'],
+            attributes: ['id', 'user_from_id', 'user_to_id', 'book_from_id', 'book_to_id', 'is_accepted'],
             include: [
                 {
                     model: Book,

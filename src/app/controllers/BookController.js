@@ -1,6 +1,7 @@
 const Book = require('../models/Book')
 const Op = require('sequelize').Op;
 const File = require('../models/File')
+const User = require('../models/User')
 
 class BookController {
     async store(req, res) {
@@ -38,6 +39,11 @@ class BookController {
                 as: 'image',
                 attributes: ['name', 'path', 'url'],
               },
+              {
+                model: User,
+                as: 'user',
+                attributes: ['location']
+              }
             ],
         })
 
@@ -59,6 +65,11 @@ class BookController {
                 as: 'image',
                 attributes: ['name', 'path', 'url'],
               },
+              {
+                model: User,
+                as: 'user',
+                attributes: ['location']
+              }
             ],
         })
 
@@ -79,6 +90,11 @@ class BookController {
                 as: 'image',
                 attributes: ['name', 'path', 'url'],
               },
+              {
+                model: User,
+                as: 'user',
+                attributes: ['location']
+              }
             ],
         })
 

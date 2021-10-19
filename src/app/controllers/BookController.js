@@ -30,8 +30,8 @@ class BookController {
 
     async index(req, res) {
         const books = await Book.findAndCountAll({
-            where:{ is_active:true},
-         
+            where:{ ...req.query, is_active: true },
+
             attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'user_id', 'created_at'],
             include: [
               {

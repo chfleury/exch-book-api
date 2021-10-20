@@ -6,8 +6,8 @@ module.exports = {
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false // <<<<<< YOU NEED THIS
-    }
+      rejectUnauthorized: false, // <<<<<< YOU NEED THIS
+    },
   },
   host: 'ec2-54-204-148-110.compute-1.amazonaws.com',
   username: 'ianvopnsmcdyms',
@@ -17,6 +17,6 @@ module.exports = {
   define: {
     timestamps: true,
     underscored: true,
-    underscoredAll: true
+    underscoredAll: true,
   },
-}
+};

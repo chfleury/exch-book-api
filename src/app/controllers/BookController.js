@@ -56,7 +56,6 @@ class BookController {
         const {user_id} = req.params
         const {category} = req.query
         
-        
         const books = await Book.findAndCountAll({
             where: { user_id: { [Op.ne]: user_id }, is_active:true, category},
             order: [['created_at', 'DESC']],

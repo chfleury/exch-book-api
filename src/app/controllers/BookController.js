@@ -54,8 +54,11 @@ class BookController {
 
     async indexNotUser(req, res) {
         const {user_id} = req.params
+        const {category} = req.query
+        
+        
         const books = await Book.findAndCountAll({
-            where: { user_id: { [Op.ne]: user_id }, is_active:true, ...req.query},
+            where: { user_id: { [Op.ne]: user_id }, is_active:true, category},
             order: [['created_at', 'DESC']],
           
             attributes: ['id', 'title', 'category', 'description', 'is_active', 'conservation_state', 'image_id', 'user_id', 'created_at'],
